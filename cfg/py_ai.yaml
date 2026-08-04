@@ -1,0 +1,50 @@
+run_pid_path: './data/run_pid.txt' #保存程序运行的 pid 的文件
+user_path: "./data/user.json" #用户配置
+
+default_user: 'admin' #默认账号
+default_password: 'siboasi123' #默认密码
+default_save_path: './temp/video_recording' #默认保存路径
+default_manufacturer: '华为' #默认厂商
+default_fps: 0 #默认fps
+default_show_image: True #默认显示图像 True False
+default_auto_recording: True #默认保存录像 True False
+
+is_start_sleep: 0 #延迟运行程序状态 1 or 0
+start_sleep_time: 5 #延迟运行程序时间秒
+
+manufacturer: ["华为","海康","大华","网络摄像头","其它"] #厂商
+
+#设备播放配置
+device_play_cfg:
+  is_image_RGB: 0 #图片格式为RGB颜色  1 or 0
+  is_max_size_limit: 0 #启用最大尺寸限制  1 or 0 等比缩放
+  where_max_size: 832 #最大尺寸限制 大于0 启用 等比缩放  1152 1024 896  832 768
+  where_camera_queue_maxsize: 30 #队列最大缓存的数量
+  ffmpeg_log_level_input: 'info' #日志等级 warning info error debug
+  ffmpeg_log_level_output: 'info' #日志等级 warning info error debug
+  ffmpeg_hwaccel: 'cuda' # 硬件解码类型 cuda d3d11va dxva2 vulkan vaapi qsv opencl  vdpau drm
+  #win=cuda d3d11va dxva2 vulkan vaapi qsv opencl
+  #ubuntu=vdpau cuda qsv opencl
+  #RK=rkmpp
+  ffmpeg_vcodec: 'hevc_rkmpp' #RK开发版 关键：指定 RK MPP HEVC 硬解码器  hevc_rkmpp  h264_rkmpp
+  is_rk: 0 #RK开发版 1=是 0=否
+
+  is_wait_state: 1 #启用每张图片的，等待时间状态 1 or 0
+  is_wait_time_by_fps: 0 #每张图片的，等待时间自动根据fps来计算 1 or 0
+  where_set_wait_time: 10 #设置的每张图片的，等待时间 毫秒 30fps=0.033 40fps=0.025 50fps=0.02  60fps=0.016
+  is_read_to_image: 1 #ffmpeg 读取图片流的时候就转为图片 1 or 0
+  where_worker_image_show_interval: 0.02 #线程处理图片显示间隔 25fps= 1/25=0.04 , 30fps= 1/30=0.033 , 35fps= 1/35=0.028, 40fps= 1/40=0.025, 50fps= 1/50=0.02
+  where_timeout: 5 #超时时间，没有更新视频数据，就自动断开
+
+  print_frame_time_interval: 200 #间隔帧打印一次日志
+
+
+#保存目录的配置
+save_path_cfg:
+  ffmpeg_log_level_input: 'warning' #日志等级 warning info error debug
+  ffmpeg_log_level_output: 'warning' #日志等级 warning info error debug
+  ffmpeg_codec: 'h264_rkmpp' #编码器
+  #正常电脑 hevc_nvenc h264_nvenc libx265 libx264
+  #RK开发版 h264_rkmpp  hevc_rkmpp  mpeg4
+  ffmpeg_bitrate: '' # 视频比特率  2M 3M 5M 为空，自动获取
+  is_thread_writer_video: 0 #线程写入视频 1 or 0
