@@ -1,0 +1,16 @@
+
+1、打开 Anaconda PowerShell Prompt
+conda env list
+conda activate py310_pure
+
+2. 进入程序的目录
+cd D:\code\辅助工具\py摄像头录像
+
+ 选择指令
+
+ #多文件，exe小
+ pyinstaller -D -w   -i images/logo.ico --name "py摄像头录像" main.py
+
+ #单个文件，很大
+ pyinstaller -F -w   -i images/logo.ico --name "py摄像头录像" main.py
+
